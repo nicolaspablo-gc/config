@@ -1,0 +1,5 @@
+--retries infinite
+--prefer-free-formats
+--extract-audio
+--output '%(playlist_index)s.%(title)s.%(ext)s'
+--restrict-filenames
