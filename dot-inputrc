@@ -1,0 +1,15 @@
+# case insensitive completion
+set completion-ignore-case on
+set completion-map-case    on
+
+# inmediatly show available completions
+set show-all-if-ambiguous  on
+set show-all-if-unmodified on
+
+set history-preserve-point on
+
+$if Bash
+    "\el": history-and-alias-expand-line
+    # expand line, then insert space
+    "\e ": "\el "
+$endif
