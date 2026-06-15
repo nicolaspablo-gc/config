@@ -1,0 +1,52 @@
+[alias]
+        b = branch
+        ba = branch --all
+        bk = branch -d
+        cg = config --global
+        ck = checkout
+        cm = commit
+        cmed = commit --amend # commit edit
+        cmex = commit --no-edit --amend # CoMmit EXtend
+        df = diff
+        dfs = diff --staged
+        f = fetch --prune
+        fetch = fetch --prune
+        l = log
+        l1 = log --oneline
+        rbc = rebase --continue
+        rt = remote
+        s = status
+        sm = submodule
+        smu = submodule update
+        unstage = restore --staged
+        wt = worktree
+[user]
+        email = nicolaspablo.gc@gmail.com
+        name = Nicolas Pablo Gonzalez Carrasco
+[credential]
+        helper = cache --timeout=3600
+[credential "https://github.com"]
+        username = nicolaspablo-gc
+[core]
+        editor = emacsclient
+        autocrlf = false
+        pager = less -F -X -R
+[pager]
+        branch = false
+[include]
+    path = .gitconfig.local
+[includeIf "gitdir:~/trabajo/**"]
+        path = ~/trabajo/.gitconfig
+[fetch]
+        prune = true
+[push]
+        autoSetupRemote = true
+[diff]
+        indentHeuristic = true
+        algorithm = patience
+[init]
+        defaultBranch = main
+[github]
+        user = nicolaspablo-gc
+[delta]
+        keep-plus-minus-markers = true

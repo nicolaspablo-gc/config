@@ -1,0 +1,14 @@
+*~
+*#
+.#*
+.vscode
+.venv
+.dir-locals.el
+gitignore/
+/pyrightconfig.json
+/typings
+/*.xopp
+/.*.xopp
+.agent-shell/
+.claude
+.worktrees
