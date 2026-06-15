@@ -1,0 +1,80 @@
+#! /bin/bash
+
+prompt_pyvenv () {
+    if [ "$VIRTUAL_ENV" ]; then
+        printf " py[%s]" "${VIRTUAL_ENV##*/}"
+    fi
+}
+
+prompt_dirs () {
+    local n=$(dirs -v | wc -l)
+
+    if (( n == 1 )); then
+        local pwd="\w"
+        printf "${pwd@P}"
+    else
+        dirs -v | while read -r num dir; do
+            printf " %s:%s" "$num" "$dir"
+        done
+    fi
+}
+
+prompt_git_branch () {
+    command -v git > /dev/null || return
+    local branch
+    branch=$(git branch --show-current 2>/dev/null)
+    if [ -z "$branch" ]; then
+        # try to use commit hash
+        branch=$(git describe --tags --exact-match 2>/dev/null \
+                 || git rev-parse --short HEAD 2>/dev/null)
+        [ "$branch" ] && printf ' #%s' "$branch"
+    else
+        # Abbreviate common branch prefixes
+        branch=${branch/feature/ft}
+        branch=${branch/refactor/rx}
+        branch=${branch/refact/rx}
+        printf ' *%s' "$branch"
+    fi
+}
+
+prompt_jobs () {
+    local jobs="\j"
+    if [ "${jobs@P}" -gt 0 ]; then
+        printf " %s%%" "${jobs@P}"
+    fi
+}
+
+_host_color () {
+    case "$(hostname)" in
+        laptop-nico) echo 2 ;; # green
+        *)           echo 4 ;; # blue
+    esac
+}
+
+_build_ps1 () {
+    local y="\[$(tput setaf 3)\]"
+    local g="\[$(tput setaf 2)\]"
+    local c="\[$(tput setaf 6)\]"
+    local m="\[$(tput setaf 5)\]"
+    local b="\[$(tput setaf 4)\]"
+    local h="\[$(tput setaf "$(_host_color)")\]"
+    local r="\[$(tput sgr0)\]"
+
+    printf '\n'
+    printf '%s\\u%s@%s\\h' "$y" "$r" "$h"
+    printf '%s%s' "$c" '$(prompt_git_branch)'
+    printf '%s%s' "$g" '$(prompt_jobs)'
+    printf '%s%s' "$m" '$(prompt_pyvenv)'
+    printf '%s%s' "$b" '$(prompt_dirs)'
+    printf '\n%s\\$ %s' "$g" "$r"
+
+    if declare -f vterm_prompt_end > /dev/null; then
+        printf '\[$(vterm_prompt_end)\]'
+    fi
+
+    VIRTUAL_ENV_DISABLE_PROMPT=1
+}
+
+PS1=$(_build_ps1)
+
+unset -f _host_color _build_ps1

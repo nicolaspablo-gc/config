@@ -1,0 +1,65 @@
+#! /bin/bash
+
+man ()  { emacsclient --eval "(man \"$1\")"; }
+info () { emacsclient --eval "(info-display-manual \"$1\")"; }
+e () {
+    if test $# -eq 0; then
+        emacsclient --no-wait .
+    else
+        for file in "$@"; do
+            emacsclient --no-wait "$file"
+        done
+    fi
+}
+
+[ "$INSIDE_EMACS" = vterm ] || return
+
+# vterm config
+
+vterm_printf () {
+    if [ -n "$TMUX" ] &&
+       { [ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ]; }
+    then
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+    elif [ "${TERM%%-*}" = "screen" ]; then
+        printf "\eP\e]%s\007\e\\" "$1"
+    else
+        printf "\e]%s\e\\" "$1"
+    fi
+}
+
+vterm_prompt_end () {
+    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+}
+
+vterm_exec_command () {
+    vterm_printf "51;E${*}"
+}
+
+# pass a PS1 like string to emacs, to rename the vterm buffer.
+vterm_rename () {
+    local prompt="\u@\h:\w@\A\$"
+    local PROMPT_DIRTRIM=6
+    vterm_exec_command "$(
+        printf '%s "%s"' \
+               "my-vterm-rename" \
+               "$(printf "%s %s" \
+                         "${prompt@P}" \
+                         "$(history 1 | sed -E 's/ +[0-9]+ +//')")"
+    )"
+}
+
+unalias e x mg 2>/dev/null
+
+# open multiple files from vterm.  Works on remote files thanks to
+# tramp.
+e () {
+    while [ $# -gt 0 ]; do
+        vterm_exec_command "find-file $(printf '"%s"' "$1")"
+        shift
+    done
+}
+mg () { vterm_exec_command "magit"; }
+
+# rename vterm buffer before every command runs
+trap vterm_rename DEBUG

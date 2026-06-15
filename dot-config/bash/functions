@@ -1,0 +1,42 @@
+#! /bin/bash
+
+# kill jobspecs by number
+kj () {
+    for n in "$@"; do
+        eval kill "%$n" && eval fg "%$n"
+    done
+}
+
+# stop jobs by number
+stop () {
+    for n in "$@"; do
+        eval kill -s STOP "%$n"
+    done
+}
+
+# pop to dir by number or regex; if multiple matches, use select
+d () {
+    if echo "$1" | grep -qE "^[0-9]+$"; then
+        eval "pushd +${1}"
+    else
+        local dirs nl dir
+        dirs=$(dirs -v | grep -E " ?[0-9]+  .*${1}.*" | sed -E 's/ ?([0-9]+)  (.*)/\1:\2/')
+        nl=$(echo "$dirs" | wc -l)
+        if [ "$nl" -eq 0 ]; then
+            echo "No match for dir regex: '$1'."
+        elif [ "$nl" -eq 1 ]; then
+            eval "pushd +$(echo "$dirs" | cut -f1 -d:)"
+        else
+            dir=$(
+                IFS=$'\n'
+                PS3='Opcion: '
+                select dir in $(dirs -p | grep "$1"); do
+                    echo "$dir"
+                    break
+                done
+            )
+            eval "pushd +$(echo "$dirs" | grep "$dir" | cut -f1 -d:)"
+        fi
+    fi
+}
+

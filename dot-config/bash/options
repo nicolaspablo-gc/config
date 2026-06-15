@@ -1,0 +1,15 @@
+#! /bin/bash
+
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+COMP_WORDBREAKS="${COMP_WORDBREAKS//:/}"
+
+if ! echo "$PATH" | grep -q "${HOME}/.local/bin"; then
+    export PATH="${HOME}/.local/bin:${PATH}"
+fi
+
+shopt -s histappend    # append to history, don't overwrite
+shopt -s checkwinsize  # update $LINES/$COLUMNS after each command
+shopt -s globstar      # enable ** glob
+set   -o ignoreeof     # don't exit on C-d

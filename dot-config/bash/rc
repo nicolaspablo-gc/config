@@ -1,0 +1,46 @@
+#! /bin/bash
+
+_bashrc=${BASH_SOURCE[0]}
+_bashrc_dir=${_bashrc%/*}
+
+# Don't customize shell if running non interactively.
+[[ $- == *i* ]] || return
+
+# reloads `rc` file.
+reload () { source "$_bashrc"; }
+
+[ "$INSIDE_EMACS" ] && source "$_bashrc_dir/emacs"
+
+source "$_bashrc_dir/functions"
+source "$_bashrc_dir/aliases"
+source "$_bashrc_dir/options"
+source "$_bashrc_dir/prompt"
+
+unset _bashrc_dir
+
+# dircolors
+if test -x /usr/bin/dircolors; then
+    if test -r ~/.dircolors
+    then eval "$(dircolors -b ~/.dircolors)"
+    else eval "$(dircolors -b)"
+    fi
+fi
+
+# bash completion
+if ! shopt -oq posix; then
+    if test -f /usr/share/bash-completion/bash_completion; then
+        source /usr/share/bash-completion/bash_completion
+    elif test -f /etc/bash_completion; then
+        source /etc/bash_completion
+    fi
+fi
+
+# direnv
+if command -v direnv &>/dev/null; then
+    eval "$(direnv hook bash)"
+fi
+
+# local overrides and host-specific config
+if test -f "$HOME/.bashrc.local"; then
+    source "$HOME/.bashrc.local"
+fi

@@ -1,0 +1,41 @@
+#! /bin/bash
+
+if ! [ "$INSIDE_EMACS" ]; then
+    # use `e` as editor
+    alias e=${EDITOR:-$(command -v emacsclient || command -v nano || command -v ed || command -v vi)}
+fi
+
+alias dc='docker compose'
+alias dcl='docker compose logs --follow --tail 1000'
+alias diff='diff --color -u'
+alias du='sudo du --summarize --human-readable * 2>/dev/null'
+alias find='find -regextype posix-extended'
+alias g=git; complete -F _git g
+alias grep='grep --color=auto -iE'
+alias j=jobs
+alias l1='ls --color=auto --classify -1'
+alias la='ls --color=auto --classify -Al'
+alias ll='ls --color=auto --classify -l'
+alias ls='ls --color=auto --classify -CF'
+alias m='mpc'
+alias mkdir='mkdir -p'
+alias mn='mpc next'
+alias mp='mpc prev'
+alias paste='paste -d" "'
+alias po='popd >/dev/null'
+alias pu='pushd >/dev/null'
+alias r='fc -s'
+alias sai='sudo apt install'
+alias sar='sudo apt remove'
+alias sau='sudo apt update'
+alias stow='stow --no-folding --dotfiles'
+alias venv_activate='. .venv/bin/activate'
+alias venv_deactivate='deactivate'
+
+# ..[...] = cd up N-1 directories (e.g. ... = cd ../..)
+for _n in {2..10}; do
+    _dots=$(for _i in $(seq 1 "$_n"); do printf "."; done)
+    _dir=$(for _i in $(seq 2 "$_n"); do printf "../"; done)
+    eval "alias $_dots='cd $_dir'"
+done
+unset _n _dots _dir
