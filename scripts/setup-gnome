@@ -1,0 +1,30 @@
+#!/bin/bash
+set -e
+
+if ! command -v gsettings > /dev/null 2>&1; then
+    echo "gsettings not found" >&2
+    exit 1
+fi
+
+# Keybindings
+gsettings set org.gnome.desktop.wm.keybindings activate-window-menu "['']"
+gsettings set org.gnome.desktop.wm.keybindings maximize "@as []"
+gsettings set org.gnome.desktop.wm.keybindings minimize "['<Super>Down']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Shift><Super>comma']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Shift><Super>period']"
+gsettings set org.gnome.desktop.wm.keybindings switch-group "['<Super>Above_Tab']"
+gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "['<Shift><Super>Above_Tab']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Super>comma']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>period']"
+gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>Up']"
+gsettings set org.gnome.desktop.wm.keybindings unmaximize "@as []"
+
+# Keyboard repeat
+gsettings set org.gnome.desktop.peripherals.keyboard delay 200
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 17
+
+# Keep Alt+` free (for Emacs)
+gsettings set org.freedesktop.ibus.general.hotkey trigger "['Control+space', 'Zenkaku_Hankaku', 'Alt+Kanji', 'Hangul', 'Alt+Release+Alt_R']"
+
+# Disable Super+. emoji picker (IBus hijacks it silently)
+gsettings set org.freedesktop.ibus.panel.emoji hotkey "@as []"
