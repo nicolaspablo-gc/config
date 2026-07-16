@@ -1,0 +1,7 @@
+#!/bin/bash
+target=$HOME
+cd "$(dirname "$(dirname "$(realpath "$0")")")"
+stow --dotfiles --no-folding --target="$target" .
+
+
+
