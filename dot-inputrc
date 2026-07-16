@@ -1,3 +1,5 @@
+# -*- mode: conf -*- 
+
 # case insensitive completion
 set completion-ignore-case on
 set completion-map-case    on
@@ -15,5 +17,5 @@ $if Bash
     "\et": complete
     "\eh": history-and-alias-expand-line
     "\e`": tilde-expand
-    "\t": "\et\eh\e`" # in order: complete, history expand, alias expand, tilde expand
+    "\t": "\eh\e`\et" # in order: history and alias expand, tilde expand, complete
 $endif

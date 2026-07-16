@@ -1,3 +1,4 @@
+# -*- mode: conf -*-
 # pointing to $HOME means: don't create this dir.
 XDG_DESKTOP_DIR="$HOME"
 XDG_DOWNLOAD_DIR="$HOME/descargas"
