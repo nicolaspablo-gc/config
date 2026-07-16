@@ -19,6 +19,12 @@ gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Sup
 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>Up']"
 gsettings set org.gnome.desktop.wm.keybindings unmaximize "@as []"
 
+# Brightness
+gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-down "['<Shift><Super>9']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-up "['<Shift><Super>0']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-down-static "['<Super>bracetleft']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-up-static "['<Super>bracetright']"
+
 # Keyboard repeat
 gsettings set org.gnome.desktop.peripherals.keyboard delay 200
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 17

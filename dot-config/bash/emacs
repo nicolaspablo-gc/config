@@ -1,9 +1,16 @@
 #! /bin/bash
 
-man ()  { emacsclient --eval "(man \"$1\")"; }
-info () { emacsclient --eval "(info-display-manual \"$1\")"; }
+man () {
+    emacsclient --eval "(man \"$1\")"
+}
+
+info () {
+    emacsclient --eval "(info-display-manual \"$1\")"
+}
+
+# edit
 e () {
-    if test $# -eq 0; then
+    if [ $# -eq 0 ]; then
         emacsclient --no-wait .
     else
         for file in "$@"; do
@@ -59,7 +66,10 @@ e () {
         shift
     done
 }
-mg () { vterm_exec_command "magit"; }
+
+mg () {
+    vterm_exec_command "magit"
+}
 
 # rename vterm buffer before every command runs
 trap vterm_rename DEBUG

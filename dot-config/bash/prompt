@@ -11,7 +11,7 @@ prompt_dirs () {
 
     if (( n == 1 )); then
         local pwd="\w"
-        printf "${pwd@P}"
+        printf " ${pwd@P}"
     else
         dirs -v | while read -r num dir; do
             printf " %s:%s" "$num" "$dir"

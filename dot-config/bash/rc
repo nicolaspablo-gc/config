@@ -1,7 +1,16 @@
 #! /bin/bash
 
-_bashrc=${BASH_SOURCE[0]}
+_bashrc=$(realpath "${BASH_SOURCE[0]}")
 _bashrc_dir=${_bashrc%/*}
+
+_debug_vars() {
+    while [ $# -gt 0 ]; do
+        echo "$1=$(eval echo \"'$'"$1"\")"
+        shift
+    done
+}
+
+_debug_vars _bashrc _bashrc_dir
 
 # Don't customize shell if running non interactively.
 [[ $- == *i* ]] || return

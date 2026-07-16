@@ -9,7 +9,11 @@ set show-all-if-unmodified on
 set history-preserve-point on
 
 $if Bash
-    "\el": history-and-alias-expand-line
-    # expand line, then insert space
-    "\e ": "\el "
+    set expand-tilde on
+
+    "\e/": dabbrev-expand
+    "\et": complete
+    "\eh": history-and-alias-expand-line
+    "\e`": tilde-expand
+    "\t": "\et\eh\e`" # in order: complete, history expand, alias expand, tilde expand
 $endif
