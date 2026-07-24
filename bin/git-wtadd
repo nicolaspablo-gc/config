@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [ $# -eq 0 ]; then
+    echo "No args given"
+    echo "git wtadd <new-branch> [stem-from] [directory-name]"
+    exit 1
+fi
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+REPO_NAME=${REPO_ROOT/*\//}
+
+BRANCH=$1
+CHECKOUT_FROM=${2:-$(git branch --show-current)}
+AUTO_DEST="../${REPO_NAME}.${BRANCH/\//.}" # substitute '/' to '.'
+DEST=${3:-$AUTO_DEST}
+
+git worktree add -b "$BRANCH" "$DEST" "$CHECKOUT_FROM"
+cd "$DEST"
+ln -s "$REPO_ROOT"/{.env,.venv} ./

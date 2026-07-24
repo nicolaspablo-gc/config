@@ -49,7 +49,7 @@ vterm_rename () {
     local PROMPT_DIRTRIM=6
     vterm_exec_command "$(
         printf '%s "%s"' \
-               "my-vterm-rename" \
+               "my-x-vterm-rename" \
                "$(printf "%s %s" \
                          "${prompt@P}" \
                          "$(history 1 | sed -E 's/ +[0-9]+ +//')")"

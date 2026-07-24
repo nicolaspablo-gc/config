@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [ $# -eq 0 ]; then
+    echo "No args given"
+    echo "git wtrm <worktree-path>"
+    exit 1
+fi
+
+REPO="${1}"
+cd "$REPO"
+BRANCH=$(git branch --show-current)
+cd - >/dev/null
+
+git worktree remove "$REPO"
+git branch -d "$BRANCH"

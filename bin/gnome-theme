@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+get_scheme() {
+	gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null | tr -d "'"
+}
+
+set_scheme() {
+	gsettings set org.gnome.desktop.interface color-scheme "$1"
+}
+
+set_gtk_theme() {
+	gsettings set org.gnome.desktop.interface gtk-theme "$1"
+}
+
+current=$(get_scheme)
+
+if [[ $# -eq 0 ]]; then
+	if [[ "$current" == "prefer-dark" ]]; then
+		set_scheme "prefer-light"
+		set_gtk_theme "Adwaita"
+		echo "light"
+	else
+		set_scheme "prefer-dark"
+		set_gtk_theme "Adwaita-dark"
+		echo "dark"
+	fi
+elif [[ "$1" == "light" ]]; then
+	set_scheme "prefer-light"
+	set_gtk_theme "Adwaita"
+	echo "light"
+elif [[ "$1" == "dark" ]]; then
+	set_scheme "prefer-dark"
+	set_gtk_theme "Adwaita-dark"
+	echo "dark"
+else
+	echo "usage: $(basename "$0") [light|dark]" >&2
+	exit 1
+fi
