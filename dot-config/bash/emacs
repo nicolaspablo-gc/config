@@ -45,7 +45,7 @@ vterm_exec_command () {
 
 # pass a PS1 like string to emacs, to rename the vterm buffer.
 vterm_rename () {
-    local prompt="\u@\h:\w@\A\$"
+    local prompt="\w\$"
     local PROMPT_DIRTRIM=6
     vterm_exec_command "$(
         printf '%s "%s"' \
