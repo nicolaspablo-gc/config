@@ -1,0 +1,17 @@
+#! /bin/bash
+
+set -euo pipefail
+
+CONFIG_DIR=${CONFIG_DIR:-$(dirname "$(dirname "$(realpath "$0")")")}
+STOW_TARGET=$HOME
+
+cd "$CONFIG_DIR"
+
+git add .
+git commit -m 'Auto update by `conf-sync`'
+
+git fetch
+git rebase
+git push
+
+stow --dotfiles --no-folding --target="$STOW_TARGET" .
