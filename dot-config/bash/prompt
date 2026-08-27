@@ -72,7 +72,7 @@ _build_ps1 () {
         printf '\[$(vterm_prompt_end)\]'
     fi
 
-    VIRTUAL_ENV_DISABLE_PROMPT=1
+    export VIRTUAL_ENV_DISABLE_PROMPT=1
 }
 
 PS1=$(_build_ps1)

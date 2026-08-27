@@ -29,6 +29,8 @@ alias sai='sudo apt install'
 alias sar='sudo apt remove'
 alias sau='sudo apt update'
 alias stow='stow --no-folding --dotfiles'
+alias uvpir='uv pip install -r requirements.txt'
+alias uvv='uv venv'
 alias venv_activate='. .venv/bin/activate'
 alias venv_deactivate='deactivate'
 
