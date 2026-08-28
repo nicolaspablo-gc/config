@@ -5,6 +5,7 @@ if ! [ "$INSIDE_EMACS" ]; then
     alias e=${EDITOR:-$(command -v emacsclient || command -v nano || command -v ed || command -v vi)}
 fi
 
+alias activate='. .venv/bin/activate'
 alias dc='docker compose'
 alias dcl='docker compose logs --follow --tail 1000'
 alias diff='diff --color -u'
@@ -31,8 +32,6 @@ alias sau='sudo apt update'
 alias stow='stow --no-folding --dotfiles'
 alias uvpir='uv pip install -r requirements.txt'
 alias uvv='uv venv'
-alias venv_activate='. .venv/bin/activate'
-alias venv_deactivate='deactivate'
 
 # ..[...] = cd up N-1 directories (e.g. ... = cd ../..)
 for _n in {2..10}; do

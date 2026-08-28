@@ -34,6 +34,7 @@ export EDITOR=$(
     command -v nano        ||
     command -v ed
 )
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Source bash config for bash login shells
 if [ -n "${BASH_VERSION}" ] && [ -f "${HOME}/.bashrc" ]; then
