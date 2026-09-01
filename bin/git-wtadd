@@ -4,7 +4,7 @@ set -euo pipefail
 
 if [ $# -eq 0 ]; then
     echo "No args given"
-    echo "git wtadd <new-branch> [stem-from] [directory-name]"
+    echo "git wtadd <branch> [stem-from] [directory-name]"
     exit 1
 fi
 
@@ -16,6 +16,17 @@ CHECKOUT_FROM=${2:-$(git branch --show-current)}
 AUTO_DEST="../${REPO_NAME}.${BRANCH/\//.}" # substitute '/' to '.'
 DEST=${3:-$AUTO_DEST}
 
-git worktree add -b "$BRANCH" "$DEST" "$CHECKOUT_FROM"
+if git rev-parse --verify --quiet "$BRANCH" >/dev/null \
+   || git rev-parse --verify --quiet "origin/$BRANCH" >/dev/null; then
+    # Branch exists locally or on origin: check it out directly.
+    # (DWIM creates a local tracking branch if it only exists on origin.)
+    if [ $# -ge 2 ]; then
+        echo "warning: branch '$BRANCH' already exists; ignoring stem-from '$2'" >&2
+    fi
+    git worktree add "$DEST" "$BRANCH"
+else
+    git worktree add -b "$BRANCH" "$DEST" "$CHECKOUT_FROM"
+fi
+
 cd "$DEST"
-ln -s "$REPO_ROOT"/{.env,.venv} ./
+ln -sf "$REPO_ROOT"/{.env,.venv} ./
