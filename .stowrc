@@ -1,2 +1,3 @@
 --ignore=^etc
 --ignore=^scripts
+--ignore=^.stowrc

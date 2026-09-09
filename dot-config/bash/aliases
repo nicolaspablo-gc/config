@@ -11,9 +11,10 @@ alias dcl='docker compose logs --follow --tail 1000'
 alias diff='diff --color -u'
 alias du='sudo du --summarize --human-readable * 2>/dev/null'
 alias find='find -regextype posix-extended'
-alias g=git; complete -F _git g
+alias g=git
 alias grep='grep --color=auto -iE'
 alias j=jobs
+alias l='ls'
 alias l1='ls --color=auto --classify -1'
 alias la='ls --color=auto --classify -Al'
 alias ll='ls --color=auto --classify -l'
@@ -40,3 +41,23 @@ for _n in {2..10}; do
     eval "alias $_dots='cd $_dir'"
 done
 unset _n _dots _dir
+
+# Completions
+
+_make_alias_complete() {
+    local alias_name=$1 target_cmd=$2
+    eval "
+    _${alias_name}_complete() {
+        _completion_loader ${target_cmd}
+        local spec func
+        spec=\$(complete -p ${target_cmd} 2>/dev/null) || return
+        eval \"\${spec% ${target_cmd}} ${alias_name}\"
+        func=\${spec##*-F }
+        func=\${func%% *}
+        \"\$func\" \"\$@\"
+    }
+    complete -F _${alias_name}_complete ${alias_name}
+    "
+}
+
+_make_alias_complete g git
