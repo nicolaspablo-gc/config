@@ -4,8 +4,9 @@ HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
 COMP_WORDBREAKS="${COMP_WORDBREAKS//:/}"
+HISTTIMEFORMAT='%F %T ' # to allow reading multiline entries from history
 
-if ! echo "$PATH" | grep -q "${HOME}/.local/bin"; then
+if ! echo "$PATH" | grep -qF "${HOME}/.local/bin"; then
     export PATH="${HOME}/.local/bin:${PATH}"
 fi
 
@@ -13,3 +14,5 @@ shopt -s histappend    # append to history, don't overwrite
 shopt -s checkwinsize  # update $LINES/$COLUMNS after each command
 shopt -s globstar      # enable ** glob
 set   -o ignoreeof     # don't exit on C-d
+shopt -s cmdhist       # ensure history is enabled
+shopt -s lithist       # save multiline entries
