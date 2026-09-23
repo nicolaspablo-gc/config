@@ -57,6 +57,11 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-7 "['<Super><Sh
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-8 "['<Super><Shift>8']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-9 "['<Super><Shift>9']"
 
+# Media controls
+gsettings set org.gnome.settings-daemon.plugins.media-keys previous "['<Super>F1']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys play "['<Super>F2']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys next "['<Super>F3']"
+
 # Brightness
 gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-down "['<Shift><Super>9']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-up "['<Shift><Super>0']"
