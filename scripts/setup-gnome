@@ -55,18 +55,28 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-5 "['<Super><Sh
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-6 "['<Super><Shift>6']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-7 "['<Super><Shift>7']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-8 "['<Super><Shift>8']"
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-9 "['<Super><Shift>9']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-9 "['<Super>bracketleft', '<Super><Shift>bracketleft']"  # Shift+9 is [ via keyd; <Super><Shift>9 is Super+( (brightness)
+
+# Screenshot on Super+P (Print is remapped to Super by keyd)
+gsettings set org.gnome.mutter.keybindings switch-monitor "['XF86Display']"
+gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Super>p']"
 
 # Media controls
 gsettings set org.gnome.settings-daemon.plugins.media-keys previous "['<Super>F1']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys play "['<Super>F2']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys next "['<Super>F3']"
 
+# Volume
+gsettings set org.gnome.settings-daemon.plugins.media-keys volume-down "['<Super>minus']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys volume-up "['<Super>equal']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys volume-down-precise "['<Shift><Super>minus']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys volume-up-precise "['<Shift><Super>equal']"
+
 # Brightness
 gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-down "['<Shift><Super>9']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-up "['<Shift><Super>0']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-down-static "['<Super>bracetleft']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-up-static "['<Super>bracetright']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-down-static "['<Super>braceleft']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-up-static "['<Super>braceright']"
 
 # Keyboard repeat
 gsettings set org.gnome.desktop.peripherals.keyboard delay 200

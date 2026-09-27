@@ -20,6 +20,7 @@
         smu = submodule update
         unstage = restore --staged
         wt = worktree
+	a = add
 [user]
         email = nicolaspablo.gc@gmail.com
         name = Nicolas Pablo Gonzalez Carrasco
@@ -34,7 +35,7 @@
 [pager]
         branch = false
 [include]
-    path = .gitconfig.local
+    path = local.conf
 [includeIf "gitdir:~/trabajo/**"]
         path = ~/trabajo/.gitconfig
 [fetch]
