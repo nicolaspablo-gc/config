@@ -20,7 +20,7 @@
         smu = submodule update
         unstage = restore --staged
         wt = worktree
-	a = add
+        a = add
 [user]
         email = nicolaspablo.gc@gmail.com
         name = Nicolas Pablo Gonzalez Carrasco
