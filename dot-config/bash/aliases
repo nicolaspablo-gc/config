@@ -10,7 +10,6 @@ alias dc='docker compose'
 alias dcl='docker compose logs --follow --tail 1000'
 alias diff='diff --color -u'
 alias du='sudo du --summarize --human-readable * 2>/dev/null'
-alias find='find -regextype posix-extended'
 alias g=git
 alias grep='grep --color=auto -iE'
 alias j=jobs
