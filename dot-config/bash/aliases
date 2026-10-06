@@ -45,22 +45,10 @@ for _n in {2..10}; do
 done
 unset _n _dots _dir
 
-# Completions
-
-_make_alias_complete() {
-    local alias_name=$1 target_cmd=$2
-    eval "
-    _${alias_name}_complete() {
-        _completion_loader ${target_cmd}
-        local spec func
-        spec=\$(complete -p ${target_cmd} 2>/dev/null) || return
-        eval \"\${spec% ${target_cmd}} ${alias_name}\"
-        func=\${spec##*-F }
-        func=\${func%% *}
-        \"\$func\" \"\$@\"
-    }
-    complete -F _${alias_name}_complete ${alias_name}
-    "
-}
-
-_make_alias_complete g git
+# alias completion, installed by scripts/install-complete-alias
+_complete_alias_file=${XDG_CONFIG_HOME:-$HOME/.config}/bash/complete_alias
+if test -f "$_complete_alias_file"; then
+    source "$_complete_alias_file"
+    complete -F _complete_alias g sc scu jc jcu dc sai sar
+fi
+unset _complete_alias_file

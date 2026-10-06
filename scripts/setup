@@ -3,3 +3,4 @@ CONFIG_DIR=${CONFIG_DIR:-$(dirname "$(dirname "$(realpath "$0")")")}
 STOW_TARGET=$HOME
 cd "$CONFIG_DIR"
 stow --dotfiles --no-folding --target="$STOW_TARGET" .
+"$CONFIG_DIR/scripts/install-complete-alias"

@@ -1,0 +1,37 @@
+#!/bin/bash
+# Install cykerway/complete-alias, which gives aliases the completions of
+# the command they expand to.  Skips the download when the pinned version
+# is already installed.
+set -euo pipefail
+
+COMMIT=7f2555c2fe7a1f248ed2d4301e46c8eebcbbc4e2
+SHA256=6d9c73e14707342015f9ba4c5c10ff456c1b6980eecdce82b351a092fc37dc9f
+URL=https://raw.githubusercontent.com/cykerway/complete-alias/$COMMIT/complete_alias
+DEST_DIR=${XDG_CONFIG_HOME:-$HOME/.config}/bash
+DEST=$DEST_DIR/complete_alias
+
+# Already installed at the pinned version?
+if echo "$SHA256  $DEST" | sha256sum --check --status 2>/dev/null; then
+    exit 0
+fi
+
+# A folded stow would make this directory a link into the repo, and the
+# download would land among tracked files.
+if [ -L "$DEST_DIR" ]; then
+    echo "$DEST_DIR is a symlink; refusing to write third-party code into it" >&2
+    exit 1
+fi
+
+mkdir -p "$DEST_DIR"
+
+tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT
+
+curl -fsSL "$URL" -o "$tmp"
+echo "$SHA256  $tmp" | sha256sum --check --status || {
+    echo "checksum mismatch for $URL" >&2
+    exit 1
+}
+
+mv "$tmp" "$DEST"
+echo "installed $DEST"
