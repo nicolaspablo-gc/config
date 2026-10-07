@@ -1,30 +1,39 @@
 #! /bin/bash
 
+# Comment for later me: When making an alias that shadows an existing
+# command, don't include options that affect default behaviour.  For
+# example, don't alias `grep='grep -iE'` because that can break
+# regular `grep` commands that are executed whenever sourcing other
+# scripts.  On the other hand, `grep='grep --color=auto'` is a safe
+# alias shadowing, because it doesn't change grep's behaviour.
+
 if ! [ "$INSIDE_EMACS" ]; then
     # use `e` as editor
     alias e=${EDITOR:-$(command -v emacsclient || command -v nano || command -v ed || command -v vi)}
 fi
 
+
 alias activate='. .venv/bin/activate'
 alias dc='docker compose'
 alias dcl='docker compose logs --follow --tail 1000'
-alias diff='diff --color -u'
-alias du='sudo du --summarize --human-readable * 2>/dev/null'
+alias diff='diff --color'
+alias dff='diff -u'
+alias dus='sudo du --summarize --human-readable * 2>/dev/null'
 alias g=git
-alias grep='grep --color=auto -iE'
+alias grep='grep --color=auto'
+alias gerp='grep -iE' # gerp -> g/extended-regexp/p
 alias j=jobs
 alias jc=journalctl
 alias jcu='journalctl --user'
-alias l='ls'
+alias l='ls --color=auto --classify'
 alias l1='ls --color=auto --classify -1'
 alias la='ls --color=auto --classify -Al'
 alias ll='ls --color=auto --classify -l'
-alias ls='ls --color=auto --classify -CF'
+alias ls='ls --color=auto'
 alias m='mpc'
-alias mkdir='mkdir -p'
+alias md='mkdir -p'
 alias mn='mpc next'
 alias mp='mpc prev'
-alias paste='paste -d" "'
 alias po='popd >/dev/null'
 alias pu='pushd >/dev/null'
 alias r='fc -s'
@@ -33,7 +42,6 @@ alias scu='systemctl --user'
 alias sai='sudo apt install'
 alias sar='sudo apt remove'
 alias sau='sudo apt update'
-alias stow='stow --no-folding --dotfiles'
 alias uvpir='uv pip install -r requirements.txt'
 alias uvv='uv venv'
 
