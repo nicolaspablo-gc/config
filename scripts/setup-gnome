@@ -8,6 +8,8 @@ fi
 
 # Keybindings
 gsettings set org.gnome.desktop.wm.keybindings activate-window-menu "['']"
+gsettings set org.gnome.desktop.wm.keybindings begin-resize "@as []"
+gsettings set org.gnome.shell.keybindings toggle-overview "['<Alt>F8', '<Shift>F8']"
 gsettings set org.gnome.desktop.wm.keybindings maximize "@as []"
 gsettings set org.gnome.desktop.wm.keybindings minimize "['<Super>Down']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Shift><Super>comma']"
