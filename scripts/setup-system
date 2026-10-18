@@ -1,0 +1,5 @@
+#! /bin/bash
+conf_dir=$(dirname "$(dirname "$(realpath "${BASH_SOURCE[0]}")")")
+cd "$conf_dir"
+
+sudo stow --dotfiles --no-folding --target=/etc etc
