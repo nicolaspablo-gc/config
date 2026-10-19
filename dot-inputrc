@@ -15,8 +15,10 @@ $if Bash
 
     "\e/": dabbrev-expand
     "\et": complete
-    "\eh": history-expand-line
+    "\e^": history-expand-line
     "\ea": alias-expand-line
-    "\e`": tilde-expand
-    "\t": "\eh\e`\et" # in order: history, tilde expand, complete
+    "\e&": tilde-expand
+    "\t": "\e^\e&\et" # in order: history, tilde expand, complete
+
+    "\eh": " --help"
 $endif
