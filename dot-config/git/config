@@ -51,3 +51,6 @@
         user = nicolaspablo-gc
 [delta]
         keep-plus-minus-markers = true
+[diff "gpg"]
+        textconv = gpg --no-tty --decrypt
+        cachetextconv = true
