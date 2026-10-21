@@ -1,0 +1,18 @@
+#! /bin/bash
+
+target=pyrightconfig.json
+
+if [ -f "$target" ]; then
+    read -rn 1 -p "'$target' already exists, overwrite? [y/N]" answer
+    case "$answer" in
+        [yY]) : ;;
+        *) echo "Not proceeding"; exit 1 ;;
+    esac
+fi
+
+config_dir=$(dirname "$(dirname "$(realpath "${BASH_SOURCE[0]}")")")
+cat > "$target" <<EOF
+{
+    "extends": "$config_dir/dot-config/basedpyright/config.json"
+}
+EOF
