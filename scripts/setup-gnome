@@ -65,8 +65,11 @@ gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Super>p']"
 
 # Media controls
 gsettings set org.gnome.settings-daemon.plugins.media-keys previous "['<Super>F1']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys previous "['<Super>F10']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys play "['<Super>F2']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys play "['<Super>F11']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys next "['<Super>F3']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys next "['<Super>F12']"
 
 # Volume
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-down "['<Super>minus']"
