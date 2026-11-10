@@ -85,7 +85,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-up-
 
 # Keyboard repeat
 gsettings set org.gnome.desktop.peripherals.keyboard delay 200
-gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 17
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 14
 
 # Keep Alt+` free (for Emacs)
 gsettings set org.freedesktop.ibus.general.hotkey trigger "['Control+space', 'Zenkaku_Hankaku', 'Alt+Kanji', 'Hangul', 'Alt+Release+Alt_R']"
