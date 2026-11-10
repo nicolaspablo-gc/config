@@ -13,6 +13,7 @@ set history-preserve-point on
 $if Bash
     set expand-tilde on
 
+    "\ee": edit-and-execute-command
     "\e/": dabbrev-expand
     "\et": complete
     "\e^": history-expand-line
