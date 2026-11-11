@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-# vssh: ssh to a host with vterm integration injected into the remote shell.
-
-_dir=$(dirname "${BASH_SOURCE[0]}")
-_init=$(cat "$_dir/vssh.bashrc")
-
-ssh -t "$@" "bash --rcfile <(printf %s $(printf '%q' "$_init"))"

@@ -71,5 +71,13 @@ mg () {
     vterm_exec_command "magit"
 }
 
+# ssh with vterm integration injected into the remote shell.
+vssh () {
+    local _init _dir
+    _dir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+    _init=$(cat "$_dir/vssh.bashrc")
+    ssh -t "$@" "bash --rcfile <(printf %s $(printf '%q' "$_init"))"
+}
+
 # rename vterm buffer before every command runs
 trap vterm_rename DEBUG
