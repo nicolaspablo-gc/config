@@ -71,6 +71,10 @@ mg () {
     vterm_exec_command "magit"
 }
 
+x () {
+    vterm_exec_command "execute-extended-command"
+}
+
 # ssh with vterm integration injected into the remote shell.
 vssh () {
     local _init _dir
