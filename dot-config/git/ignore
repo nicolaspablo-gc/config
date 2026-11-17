@@ -12,3 +12,4 @@ gitignore/
 .agent-shell/
 .claude
 .worktrees
+/nico/

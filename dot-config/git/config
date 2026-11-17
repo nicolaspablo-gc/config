@@ -34,10 +34,6 @@
         pager = less -F -X -R
 [pager]
         branch = false
-[include]
-    path = local.conf
-[includeIf "gitdir:~/trabajo/**"]
-        path = ~/trabajo/.gitconfig
 [fetch]
         prune = true
 [push]
@@ -54,3 +50,7 @@
 [diff "gpg"]
         textconv = gpg --no-tty --decrypt
         cachetextconv = true
+[include]
+        path = local.conf
+[includeIf "gitdir:~/trabajo/**"]
+        path = ~/trabajo/.gitconfig
