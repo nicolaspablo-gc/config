@@ -1,0 +1,115 @@
+# Modus Operandi (light) and Modus Vivendi (dark) themes for git-delta.
+# Colors from Protesilaos Stavrou's modus-themes (GPLv3+).
+# Usage in ~/.gitconfig:
+#   [include]
+#       path = ~/.config/delta/modus-delta.gitconfig
+#   [delta]
+#       features = modus-vivendi   # or modus-operandi
+
+[delta "modus-operandi"]
+    light = true
+    syntax-theme = modus-operandi
+    # Plain text / chrome
+    file-style = syntax
+    file-decoration-style = "#9f9f9f ul"
+    file-added-label = [+]
+    file-removed-label = [-]
+    file-modified-label = [~]
+    file-renamed-label = [→]
+    commit-style = syntax
+    commit-decoration-style = "#9f9f9f box"
+    hunk-header-style = syntax
+    hunk-header-file-style = "bold #3548cf"
+    hunk-header-line-number-style = "#595959"
+    hunk-header-decoration-style = "#9f9f9f box"
+    # Diff body (bg-added / bg-removed and their refine variants)
+    minus-style = "syntax #ffd8d5"
+    minus-non-emph-style = "syntax #ffd8d5"
+    minus-emph-style = "bold syntax #f3b5af"
+    minus-empty-line-marker-style = "normal #ffd8d5"
+    plus-style = "syntax #c1f2d1"
+    plus-non-emph-style = "syntax #c1f2d1"
+    plus-emph-style = "bold syntax #aee5be"
+    plus-empty-line-marker-style = "normal #c1f2d1"
+    zero-style = syntax
+    whitespace-error-style = "reverse #a60000"
+    # Line numbers
+    line-numbers = true
+    line-numbers-left-format = "{nm:^4}│"
+    line-numbers-right-format = "{np:^4}│ "
+    line-numbers-minus-style = "#8f1313 #ffe9e9"
+    line-numbers-plus-style = "#005000 #d8f8e1"
+    line-numbers-zero-style = "#595959 #f2f2f2"
+    line-numbers-left-style = "#9f9f9f"
+    line-numbers-right-style = "#9f9f9f"
+    # Blame
+    blame-palette = "#ffffff #f2f2f2 #e0e0e0"
+    blame-code-style = syntax
+    blame-format = "{author:<18} {commit:<8} {timestamp:<15}"
+    # Merge conflicts
+    merge-conflict-begin-symbol = ▼
+    merge-conflict-end-symbol = ▲
+    merge-conflict-ours-diff-header-style = "bold #005000"
+    merge-conflict-ours-diff-header-decoration-style = "#9f9f9f box"
+    merge-conflict-theirs-diff-header-style = "bold #3548cf"
+    merge-conflict-theirs-diff-header-decoration-style = "#9f9f9f box"
+    # grep / misc
+    grep-match-line-style = "syntax #ffdfa9"
+    grep-match-word-style = "bold #553d00 #fac090"
+    grep-file-style = "bold #3548cf"
+    grep-line-number-style = "#595959"
+    navigate-regex = "^(Δ|[-+~→]) "
+
+[delta "modus-vivendi"]
+    dark = true
+    syntax-theme = modus-vivendi
+    # Plain text / chrome
+    file-style = syntax
+    file-decoration-style = "#646464 ul"
+    file-added-label = [+]
+    file-removed-label = [-]
+    file-modified-label = [~]
+    file-renamed-label = [→]
+    commit-style = syntax
+    commit-decoration-style = "#646464 box"
+    hunk-header-style = syntax
+    hunk-header-file-style = "bold #79a8ff"
+    hunk-header-line-number-style = "#989898"
+    hunk-header-decoration-style = "#646464 box"
+    # Diff body (bg-added / bg-removed and their refine variants)
+    minus-style = "syntax #4f1119"
+    minus-non-emph-style = "syntax #4f1119"
+    minus-emph-style = "bold syntax #781a1f"
+    minus-empty-line-marker-style = "normal #4f1119"
+    plus-style = "syntax #00381f"
+    plus-non-emph-style = "syntax #00381f"
+    plus-emph-style = "bold syntax #034f2f"
+    plus-empty-line-marker-style = "normal #00381f"
+    zero-style = syntax
+    whitespace-error-style = "reverse #ff5f59"
+    # Line numbers
+    line-numbers = true
+    line-numbers-left-format = "{nm:^4}│"
+    line-numbers-right-format = "{np:^4}│ "
+    line-numbers-minus-style = "#ffbfbf #380a0f"
+    line-numbers-plus-style = "#a0e0a0 #002910"
+    line-numbers-zero-style = "#989898 #1e1e1e"
+    line-numbers-left-style = "#646464"
+    line-numbers-right-style = "#646464"
+    # Blame
+    blame-palette = "#000000 #1e1e1e #303030"
+    blame-code-style = syntax
+    blame-format = "{author:<18} {commit:<8} {timestamp:<15}"
+    # Merge conflicts
+    merge-conflict-begin-symbol = ▼
+    merge-conflict-end-symbol = ▲
+    merge-conflict-ours-diff-header-style = "bold #a0e0a0"
+    merge-conflict-ours-diff-header-decoration-style = "#646464 box"
+    merge-conflict-theirs-diff-header-style = "bold #79a8ff"
+    merge-conflict-theirs-diff-header-decoration-style = "#646464 box"
+    # grep / misc
+    grep-match-line-style = "syntax #363300"
+    grep-match-word-style = "bold #efef80 #4a4a00"
+    grep-file-style = "bold #79a8ff"
+    grep-line-number-style = "#989898"
+    navigate-regex = "^(Δ|[-+~→]) "

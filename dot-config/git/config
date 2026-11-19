@@ -54,3 +54,5 @@
         path = local.conf
 [includeIf "gitdir:~/trabajo/**"]
         path = ~/trabajo/.gitconfig
+[include]
+    path = ~/.config/delta/modus-delta.gitconfig
