@@ -1,3 +1,4 @@
+# -*- mode: conf -*-
 # Modus Operandi (light) and Modus Vivendi (dark) themes for git-delta.
 # Colors from Protesilaos Stavrou's modus-themes (GPLv3+).
 # Usage in ~/.gitconfig:
@@ -9,14 +10,6 @@
 [delta "modus-operandi"]
     light = true
     syntax-theme = modus-operandi
-    # Plain text / chrome
-    file-style = syntax
-    file-decoration-style = "#9f9f9f ul"
-    file-added-label = [+]
-    file-removed-label = [-]
-    file-modified-label = [~]
-    file-renamed-label = [→]
-    commit-style = syntax
     commit-decoration-style = "#9f9f9f box"
     hunk-header-style = syntax
     hunk-header-file-style = "bold #3548cf"
@@ -34,7 +27,7 @@
     zero-style = syntax
     whitespace-error-style = "reverse #a60000"
     # Line numbers
-    line-numbers = true
+    # line-numbers = true
     line-numbers-left-format = "{nm:^4}│"
     line-numbers-right-format = "{np:^4}│ "
     line-numbers-minus-style = "#8f1313 #ffe9e9"
@@ -64,13 +57,7 @@
     dark = true
     syntax-theme = modus-vivendi
     # Plain text / chrome
-    file-style = syntax
     file-decoration-style = "#646464 ul"
-    file-added-label = [+]
-    file-removed-label = [-]
-    file-modified-label = [~]
-    file-renamed-label = [→]
-    commit-style = syntax
     commit-decoration-style = "#646464 box"
     hunk-header-style = syntax
     hunk-header-file-style = "bold #79a8ff"
@@ -88,7 +75,7 @@
     zero-style = syntax
     whitespace-error-style = "reverse #ff5f59"
     # Line numbers
-    line-numbers = true
+    # line-numbers = true
     line-numbers-left-format = "{nm:^4}│"
     line-numbers-right-format = "{np:^4}│ "
     line-numbers-minus-style = "#ffbfbf #380a0f"
