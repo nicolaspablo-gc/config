@@ -10,9 +10,9 @@
 [delta "modus-operandi"]
     light = true
     syntax-theme = modus-operandi
-    commit-decoration-style = "#9f9f9f box"
+    # commit-decoration-style = "#9f9f9f box"
     hunk-header-style = syntax
-    hunk-header-file-style = "bold #3548cf"
+    # hunk-header-file-style = "bold #3548cf"
     hunk-header-line-number-style = "#595959"
     hunk-header-decoration-style = "#9f9f9f box"
     # Diff body (bg-added / bg-removed and their refine variants)
@@ -49,7 +49,7 @@
     # grep / misc
     grep-match-line-style = "syntax #ffdfa9"
     grep-match-word-style = "bold #553d00 #fac090"
-    grep-file-style = "bold #3548cf"
+    # grep-file-style = "bold #3548cf"
     grep-line-number-style = "#595959"
     navigate-regex = "^(Δ|[-+~→]) "
 
@@ -57,12 +57,12 @@
     dark = true
     syntax-theme = modus-vivendi
     # Plain text / chrome
-    file-decoration-style = "#646464 ul"
-    commit-decoration-style = "#646464 box"
-    hunk-header-style = syntax
-    hunk-header-file-style = "bold #79a8ff"
-    hunk-header-line-number-style = "#989898"
-    hunk-header-decoration-style = "#646464 box"
+    # file-decoration-style = "#646464 ul"
+    # commit-decoration-style = "#646464 box"
+    # hunk-header-style = syntax
+    # hunk-header-file-style = "bold #79a8ff"
+    # hunk-header-line-number-style = "#989898"
+    # hunk-header-decoration-style = "#646464 box"
     # Diff body (bg-added / bg-removed and their refine variants)
     minus-style = "syntax #4f1119"
     minus-non-emph-style = "syntax #4f1119"
@@ -97,6 +97,6 @@
     # grep / misc
     grep-match-line-style = "syntax #363300"
     grep-match-word-style = "bold #efef80 #4a4a00"
-    grep-file-style = "bold #79a8ff"
+    # grep-file-style = "bold #79a8ff"
     grep-line-number-style = "#989898"
     navigate-regex = "^(Δ|[-+~→]) "
